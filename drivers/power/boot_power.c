@@ -168,8 +168,13 @@ void get_bat_capacity(int *cap,int bat_mv)
 	{
 		save_cap = (pmu_sys_ctl9_data >> 8) & 0x7f; 
 		printf("store cap: %d\n", save_cap);
+//sunsj modefy begin
 		if (bat_cap > save_cap)
-			bat_cap = save_cap;
+		{
+			if(save_cap != 0)
+				bat_cap = save_cap;
+		}
+//sunsj modefy end
 	}
 	*cap = bat_cap;
 	printf("the test battery cap is: %d\n",bat_cap);
@@ -346,13 +351,13 @@ void check_power(void)
 				change by tuhm @2015-03-03 
 				gauge_id: 0 default gague;1 hw_gauge
 			*/
-			if(power_cfg_items.gauge_id == 1){
+/*		if(power_cfg_items.gauge_id == 1){
 				cap = hw_gauge_get_capacity(power_cfg_items.gauge_bus_id);
 				printf("[HW_GUAGE] low power capacity :%d \n",cap);
-			}else{
+			}else{*/
 				get_bat_capacity(&cap,bat_mv);
 				printf("low power cap :%d\n",cap);
-			}
+			//}
 
 			if(cap < power_cfg_items.boot_cap_threshold)
 			{
