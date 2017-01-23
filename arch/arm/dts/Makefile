@@ -4,7 +4,7 @@ dtb-$(CONFIG_OWL) +=  s500-lt705a.dtb \
 	actduino_lemaker_guitar.dtb \
 	actduino_bubble_gum_v10.dtb\
 	actduino_s500_upgrade.dtb\
-	cubieboard6_s500_linux_dvk_rgb.dtb
+	cubieboard6_s500.dtb
 dtb-$(CONFIG_MACH_SUN7I) +=  sun7i-a20-pcduino3.dtb
 dtb-$(CONFIG_S5PC100) += s5pc1xx-smdkc100.dtb
 dtb-$(CONFIG_S5PC110) += s5pc1xx-goni.dtb
