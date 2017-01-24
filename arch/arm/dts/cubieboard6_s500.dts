@@ -18,7 +18,7 @@
 	};
 	
 	gpio_int {
-		initgpio_A=<23 0 0>,<25 0 0>;/*<x1,x2,x3>,x1=PIN,x2=(0=OUT,1=IN),x3=IOVAL*/
+		initgpio_A=<23 0 0>,<25 0 0>;/*<x1,x2,x3>,x1=PIN,x2=(0=IN,1=OUT),x3=IOVAL*/
 		initgpio_B=<23 0 0>;
 	};
     
