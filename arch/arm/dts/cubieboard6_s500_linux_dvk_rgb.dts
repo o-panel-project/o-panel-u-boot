@@ -18,13 +18,13 @@
 	};
 	
 	gpio_int {
-		initgpio_A=<23 0 0>,<25 0 0>;/*<x1,x2,x3>,x1=PIN,x2=(0=OUT,1=IN),x3=IOVAL*/
+		initgpio_A=<23 0 0>,<25 0 0>;/*<x1,x2,x3>,x1=PIN,x2=(0=IN,1=OUT),x3=IOVAL*/
 		initgpio_B=<23 0 0>;
 	};
     
 	reserved {
 		tiny {
-			fb_heap_size = <4>;
+			fb_heap_size = <8>;
 			kinfo_heap_size = <1>;
 			carveout_heap_size = <40>;
 			dma_heap_size = <128>;
@@ -209,7 +209,7 @@
 				compatible = "actions,atc2603c-power";
 				support_adaptor_type = <2>;      /*1: DCIN  2: USB  3:DCIN+USB*/
 				gauge_bus_id = <2>;      /*gauge bus id: 0~n*/
-				gauge_id = <1>;      /*0:default gauge, 1:hwgauge*/
+				gauge_id = <0>;      /*0:default gauge, 1:hwgauge*/
 				boot_cap_threshold = <7>;     /*7%,the lowest capacity permitted to boot*/ 
 				support_minicharger = < 1 >;	/* 1:support minicharer  0:do not support minicharger */  
 			};
@@ -265,12 +265,8 @@
 		vbus_otg_en_gpios = <&gpio 78 1>;  /* GPIOC14,  0: low active; 1: high active */
 		status = "okay";
 	};
-
-	framebuffer {
-		compatible = "actions,framebuffer";
-		def_display  = "dsi";
-		bpp = <4>; 
-	};
+	
+    
 
 		
 	lcd0: lcd0@b02a0000 {
