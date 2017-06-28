@@ -302,7 +302,7 @@
 		dcdc_cfgs_3= <0x5>;
 		ldo_en_bm = <0x83>;
 		ldo_cfgs_0 = <0x1>;
-		ldo_cfgs_1 = <0x2>;
+		ldo_cfgs_1 = <0x7>;
 		ldo_cfgs_2 = <0>;
 		ldo_cfgs_3 = <0>;
 		ldo_cfgs_4 = <0>;
