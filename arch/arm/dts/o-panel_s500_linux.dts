@@ -303,7 +303,7 @@
 			dsi_phy_t2 = <0x2f06>;
 			dsi_phy_ctrl = <0xfc94>;
 			dsi_pin_map = <0x688>;
-			cmu_dsipll_clk = <0x12c01>;
+			cmu_dsipll_clk = <0x12601>;
 
 		};
 		
