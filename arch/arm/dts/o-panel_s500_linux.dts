@@ -281,7 +281,7 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&dsi_state_default>;
 		dsi_power_gpios = <&gpio 23 0>;    /*hr280ac GPIOA23*/
-		dsi_reset_gpios = <&gpio 117 0>;   /*S500 GPIOD19*/	
+		//dsi_reset_gpios = <&gpio 117 0>;   /*S500 GPIOD19*/	
 		port_type = "dsi";	 
 		data_width = <0>;
 		videomode-0 = <&dsi_mode>;
