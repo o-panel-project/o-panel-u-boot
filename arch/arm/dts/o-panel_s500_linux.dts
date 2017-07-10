@@ -306,7 +306,7 @@
 			cmu_dsipll_clk = <0x12601>;
 
 		};
-		
+
 		dsi_mode:mode@1280x800p60 {
 			refresh = <60>;
 			xres = <1280>;
@@ -371,7 +371,7 @@
 		/*1.pwm num; 2. period in ns; */
 		/*3.plarity, 0: high active, 1: low active*/
 		backlight_en_gpios = <&gpio 22 0>; /*S500 GPIO*/ 
-		pwms = <&pwm 0 50000 0>;
+		pwms = <&pwm 0 100000 0>;
 		total_steps = <1000>;
 		min_brightness = <0>;
 		max_brightness = <1000>;
