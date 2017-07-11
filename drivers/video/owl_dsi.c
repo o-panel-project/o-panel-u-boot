@@ -431,6 +431,7 @@ void dsihw_send_long_packet(int data_type, int word_cnt, int * send_data, int tr
 
 int dsi_enable(void)
 {
+	int tmp;
 	if (dsi_par.enable_state == 1)
 		return 0;
 	
@@ -441,12 +442,22 @@ int dsi_enable(void)
 	send_cmd();
 	dsihw_video_config();
 
-
 #ifdef CONFIG_OF_CONTROL
 	fdtdec_enable_dsi();
 #else
 	platform_enable_dsi();
 #endif
+
+	clrbits_le32(DSI_PHY_CTRL, (1 << 24));
+	clrbits_le32(DSI_VIDEO_CFG, 1);
+
+	udelay(10);
+	tmp = readl(DSI_PHY_CTRL);
+	tmp |= (1<<24);
+	writel(tmp, DSI_PHY_CTRL);
+	udelay(10);
+	enable_dsi();
+
 
 	dsi_par.enable_state = 1;
 
