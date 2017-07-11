@@ -371,7 +371,7 @@
 		/*1.pwm num; 2. period in ns; */
 		/*3.plarity, 0: high active, 1: low active*/
 		backlight_en_gpios = <&gpio 22 0>; /*S500 GPIO*/ 
-		pwms = <&pwm 0 100000 0>;
+		pwms = <&pwm 0 1000000 0>;
 		total_steps = <1000>;
 		min_brightness = <0>;
 		max_brightness = <1000>;
