@@ -312,13 +312,13 @@
 			xres = <1280>;
 			yres = <800>;
 			/*in pico second, 0.000 000 000 001s*/
-			pixclock = <14063>; 
-			left_margin = <75>;
-			right_margin = <25>;
-			upper_margin = <8>;
-			lower_margin = <8>;
-			hsync_len = <60>;
-			vsync_len = <7>;
+			pixclock = <15873>; 
+			left_margin = <10>;
+			right_margin = <10>;
+			upper_margin = <4>;
+			lower_margin = <4>;
+			hsync_len = <4>;
+			vsync_len = <4>;
 			/*0: FB_VMODE_NONINTERLACED, 1:FB_VMODE_INTERLACED*/
 			vmode = <0>;
 		};
