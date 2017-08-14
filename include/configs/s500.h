@@ -101,9 +101,9 @@
 #define CONFIG_CMD_RUN
 #define CONFIG_ANDROID_BOOT_IMAGE
 
-#define CONFIG_BOOTDELAY		2	/* autoboot after 2 seconds */ 
+#define CONFIG_BOOTDELAY		0	/* autoboot after 2 seconds */ 
 #define CONFIG_AUTOBOOT
-#define CONFIG_AUTOBOOT_KEYED
+/*#define CONFIG_AUTOBOOT_KEYED*/
 #define CONFIG_AUTOBOOT_DELAY_STR	"s500"
 #define CONFIG_AUTOBOOT_PROMPT		\
 	"Enter %s to abort autoboot in %d seconds\n", CONFIG_AUTOBOOT_DELAY_STR, bootdelay
