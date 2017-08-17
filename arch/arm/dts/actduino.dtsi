@@ -297,7 +297,7 @@
 		type = <2>;
 		dcdc_en_bm = <0xe>;
 		dcdc_cfgs_0 = <0>;
-		dcdc_cfgs_1 = <0xb>;
+		dcdc_cfgs_1 = <0x13>;
 		board_ddr_config = <0xa>;
 		dcdc_cfgs_3= <0x5>;
 		ldo_en_bm = <0x83>;
