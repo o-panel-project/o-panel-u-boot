@@ -360,11 +360,11 @@ static int _atc2603c_init(struct owl_pmu_config *atc260x_pmu_config)
 		CHK_VERIFY_REG(ATC2603C_PMU_DC1_CTL1,val);
 	} else if(ic_ver > 0) {
 		/*dcdc 1 ic version B configutation*/
-		val = 0xe04f;
+		val = 0xe04e;
 		val |= atc260x_pmu_config->dcdc_cfgs[1] << 7;
 		_atc2603c_reg_write(ATC2603C_PMU_DC1_CTL0, val);
 		CHK_VERIFY_REG(ATC2603C_PMU_DC1_CTL0,val);
-		val= 0x68cc;
+		val= 0x88cc;
 		_atc2603c_reg_write(ATC2603C_PMU_DC1_CTL1, val);
 		CHK_VERIFY_REG(ATC2603C_PMU_DC1_CTL1,val);
 	} else {
@@ -435,9 +435,11 @@ static int _atc2603c_init(struct owl_pmu_config *atc260x_pmu_config)
 	} else if(ic_ver > 0) {
 		val = 0x80aa;
 		val |= atc260x_pmu_config->dcdc_cfgs[3] << 9;
+		val &= (~(1 << 5));
+		val |= (1 << 6);
 		_atc2603c_reg_write(ATC2603C_PMU_DC3_CTL0, val);
 		CHK_VERIFY_REG(ATC2603C_PMU_DC3_CTL0,val);
-		val = 0xe14c;
+		val = 0xe14e;
 		_atc2603c_reg_write(ATC2603C_PMU_DC3_CTL1, val);
 		CHK_VERIFY_REG(ATC2603C_PMU_DC3_CTL1,val);
 	} else {
