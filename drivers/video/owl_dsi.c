@@ -182,7 +182,7 @@ void power_enable(void)
 	dsi_activate_gpio(&dsi_par.dsipower_gpio);
 	dsi_activate_gpio(&dsi_par.dsipower2_gpio);
 
-	mdelay(250);
+	mdelay(50);
 	
 	if(dsi_par.dsireset_gpio.name){
 		dsi_activate_gpio(&dsi_par.dsireset_gpio);
@@ -244,9 +244,9 @@ static void dsihw_phy_config(void)
 	 
 	udelay(100);
 	tmp=readl(DSI_PHY_CTRL);
-	if(tmp&0x02000000){
+//	if(tmp&0x02000000){
 		
-		printf("ERR : dsi cal fail!!\n");
+//		printf("ERR : dsi cal fail!!\n");
 
 		tmp = readl(DSI_PHY_CTRL);//disable calibrate
 		tmp &= (~(1<<25));
@@ -268,7 +268,7 @@ static void dsihw_phy_config(void)
 		tmp |= (1<<24);
 		writel(tmp,DSI_PHY_CTRL);
 
-	}
+//	}
 	
 	
 	wait_lanes_stop();
@@ -431,9 +431,13 @@ void dsihw_send_long_packet(int data_type, int word_cnt, int * send_data, int tr
 
 int dsi_enable(void)
 {
+	int tmp;
 	if (dsi_par.enable_state == 1)
 		return 0;
 	
+	clrbits_le32(DSI_VIDEO_CFG, 1);
+	udelay(10);
+
 	power_enable();
 	
 	dsihw_set_dsi_clk();
@@ -446,9 +450,15 @@ int dsi_enable(void)
 #else
 	platform_enable_dsi();
 #endif
-
-
-
+        clrbits_le32(DSI_PHY_CTRL, (1 << 24));
+        clrbits_le32(DSI_VIDEO_CFG, 1);
+ 
+        udelay(10);
+        tmp = readl(DSI_PHY_CTRL);
+        tmp |= (1<<24);
+        writel(tmp, DSI_PHY_CTRL);
+        udelay(10);
+        enable_dsi();
 	dsi_par.enable_state = 1;
 
 	debug("%s 2\n", __func__);
@@ -498,7 +508,7 @@ static int fdtdec_enable_dsi(void)
 	//	return -1;
 	}
 	enable_dsi();
-	mdelay(300);
+	mdelay(200);
 
 	pd = &dsi_par.pwm_bl_data;
 	pd->power = 1;
