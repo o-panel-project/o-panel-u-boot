@@ -158,9 +158,15 @@ void power_enable(void)
 	unsigned int tmp, reg_val;
 	debug("start power_enable\n");	
 
+	dsi_activate_gpio(&dsi_par.dsipower_gpio);
+	dsi_activate_gpio(&dsi_par.dsipower2_gpio);
+
 	tmp = readl(SPS_LDO_CTL);
 	tmp |= (1<<11);
 	writel(tmp, SPS_LDO_CTL);	
+
+	mdelay(50);
+	dsi_activate_gpio(&dsi_par.dsipower_gpio);
 
 	tmp = readl(MFP_CTL1);
 	tmp &= 0xffe1c07f;	//
@@ -179,8 +185,6 @@ void power_enable(void)
 		writel(reg_val, CMU_PWR_CTL);		
 	}
 
-	dsi_activate_gpio(&dsi_par.dsipower_gpio);
-	dsi_activate_gpio(&dsi_par.dsipower2_gpio);
 
 	mdelay(50);
 	
@@ -450,15 +454,6 @@ int dsi_enable(void)
 #else
 	platform_enable_dsi();
 #endif
-        clrbits_le32(DSI_PHY_CTRL, (1 << 24));
-        clrbits_le32(DSI_VIDEO_CFG, 1);
- 
-        udelay(10);
-        tmp = readl(DSI_PHY_CTRL);
-        tmp |= (1<<24);
-        writel(tmp, DSI_PHY_CTRL);
-        udelay(10);
-        enable_dsi();
 	dsi_par.enable_state = 1;
 
 	debug("%s 2\n", __func__);
